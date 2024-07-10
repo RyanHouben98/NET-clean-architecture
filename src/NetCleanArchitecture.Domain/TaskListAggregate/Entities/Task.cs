@@ -7,7 +7,7 @@ public sealed class Task : Entity<TaskId>
     public bool IsCompleted { get; }
     public TaskListId TaskListId { get; }
 
-    private Task(
+    internal Task(
         string name,
         string description,
         bool isCompleted,
@@ -18,13 +18,5 @@ public sealed class Task : Entity<TaskId>
         Description = description;
         TaskListId = taskListId;
         IsCompleted = isCompleted;
-    }
-
-    public static Task Create(
-        string name,
-        string description,
-        TaskListId taskListId)
-    {
-        return new Task(name, description, false, taskListId);
     }
 }

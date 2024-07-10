@@ -17,4 +17,11 @@ public sealed class TaskList : AggregateRoot<TaskListId>
     {
         return new TaskList(name);
     }
+
+    public void AddTask(string name, string description)
+    {
+        var task = new Task(name, description, false, Id);
+
+        _tasks.Add(task);
+    }
 }
