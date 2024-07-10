@@ -17,5 +17,10 @@ public class TaskListConfiguration : IEntityTypeConfiguration<TaskList>
         builder.Property(taskList => taskList.Name)
             .HasMaxLength(100)
             .IsRequired();
+
+        builder.HasMany(taskList => taskList.Tasks)
+            .WithOne()
+            .HasForeignKey(taskList => taskList.TaskListId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

@@ -2,7 +2,9 @@
 
 public sealed class TaskList : AggregateRoot<TaskListId>
 {
+    private HashSet<Task> _tasks = [];
     public string Name { get; }
+    public IReadOnlyList<Task> Tasks => _tasks.ToList();
 
     private TaskList(
         string name,
