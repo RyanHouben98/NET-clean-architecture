@@ -10,6 +10,7 @@ public class TaskListConfiguration : IEntityTypeConfiguration<TaskList>
     {
         builder.HasKey(taskList => taskList.Id);
         builder.Property(taskList => taskList.Id)
+            .ValueGeneratedNever()
             .HasConversion(
                 taskList => taskList.Value,
                 value => TaskListId.Create(value));

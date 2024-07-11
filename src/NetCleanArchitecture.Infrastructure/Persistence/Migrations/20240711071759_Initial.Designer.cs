@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NetCleanArchitecture.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240710112320_AddTask")]
-    partial class AddTask
+    [Migration("20240711071759_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,7 @@ namespace NetCleanArchitecture.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskList");
+                    b.ToTable("TaskLists");
                 });
 
             modelBuilder.Entity("NetCleanArchitecture.Domain.Task", b =>

@@ -6,11 +6,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NetCleanArchitecture.Infrastructure.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class AddTask : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "TaskLists",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskLists", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Task",
                 columns: table => new
@@ -25,9 +37,9 @@ namespace NetCleanArchitecture.Infrastructure.Persistence.Migrations
                 {
                     table.PrimaryKey("PK_Task", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Task_TaskList_TaskListId",
+                        name: "FK_Task_TaskLists_TaskListId",
                         column: x => x.TaskListId,
-                        principalTable: "TaskList",
+                        principalTable: "TaskLists",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -43,6 +55,9 @@ namespace NetCleanArchitecture.Infrastructure.Persistence.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Task");
+
+            migrationBuilder.DropTable(
+                name: "TaskLists");
         }
     }
 }

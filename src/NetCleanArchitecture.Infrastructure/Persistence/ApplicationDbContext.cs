@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using NetCleanArchitecture.Application;
+using NetCleanArchitecture.Domain;
 
 namespace NetCleanArchitecture.Infrastructure;
 
@@ -11,6 +12,8 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         
     }
+
+    public DbSet<TaskList> TaskLists { get; init;}
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {

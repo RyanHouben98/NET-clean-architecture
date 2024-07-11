@@ -62,7 +62,7 @@ namespace NetCleanArchitecture.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskList");
+                    b.ToTable("TaskLists");
                 });
 
             modelBuilder.Entity("NetCleanArchitecture.Domain.Task", b =>

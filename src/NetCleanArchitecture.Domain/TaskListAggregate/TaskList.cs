@@ -1,8 +1,10 @@
-﻿namespace NetCleanArchitecture.Domain;
+﻿using ErrorOr;
+
+namespace NetCleanArchitecture.Domain;
 
 public sealed class TaskList : AggregateRoot<TaskListId>
 {
-    private HashSet<Task> _tasks = [];
+    private readonly List<Task> _tasks = [];
     public string Name { get; }
     public IReadOnlyList<Task> Tasks => _tasks.ToList();
 
@@ -13,8 +15,24 @@ public sealed class TaskList : AggregateRoot<TaskListId>
         Name = name;
     }
 
-    public static TaskList Create(string name)
+    public static ErrorOr<TaskList> Create(string name)
     {
+        List<Error> errors = [];
+
+        if (string.IsNullOrWhiteSpace(name)) 
+        {
+            errors.Add(Errors.TaskList.NameEmpty);
+        }
+
+        if (name.Length > 100) 
+        {
+            errors.Add(Errors.TaskList.NameTooLong);
+        }
+
+        if (errors.Count > 0) {
+            return errors;
+        }
+
         return new TaskList(name);
     }
 

@@ -11,6 +11,7 @@ public class TaskConfigurations : IEntityTypeConfiguration<Task>
     {
         builder.HasKey(task => task.Id);
         builder.Property(task => task.Id)
+            .ValueGeneratedNever()
             .HasConversion(
                 task => task.Value,
                 value => TaskId.Create(value));

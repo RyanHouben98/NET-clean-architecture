@@ -32,6 +32,8 @@ public static class DependencyInjection
         services.AddScoped<IUnitOfWork>(options =>
             options.GetRequiredService<ApplicationDbContext>());
 
+        services.AddScoped<ITaskListRepository, TaskListRepository>();
+
         return services;
     }
 }
