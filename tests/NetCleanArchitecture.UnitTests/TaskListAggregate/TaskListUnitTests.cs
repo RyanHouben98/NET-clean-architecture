@@ -13,8 +13,8 @@ public class TaskListUnitTests
 
         // Assert
         Assert.Multiple(() => {
-            Assert.NotNull(result);
-            Assert.Equal(name, result.Name);
+            Assert.False(result.IsError);
+            Assert.Equal(name, result.Value.Name);
         });
     }
 }
