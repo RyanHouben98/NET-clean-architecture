@@ -10,7 +10,7 @@ public class TaskIdUnitTests
 
         // Assert
         Assert.Multiple(() => {
-            Assert.IsType<TaskListId>(result);
+            Assert.IsType<TaskId>(result);
             Assert.NotEqual(Guid.NewGuid(), result.Value);
         });
 
@@ -27,7 +27,7 @@ public class TaskIdUnitTests
 
         // Assert
         Assert.Multiple(() => {
-            Assert.IsType<TaskListId>(result);
+            Assert.IsType<TaskId>(result);
             Assert.Equal(id, result.Value);
         });
     }
